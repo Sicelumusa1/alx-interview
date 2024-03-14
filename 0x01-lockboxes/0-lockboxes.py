@@ -17,6 +17,9 @@ def canUnlockAll(boxes):
     """
     #  Initialize a set to keep track of boxes that can be unlocked
     unlocked_boxes = set([0])
+    
+    #  Initialize the boxes length
+    n = len(boxes)
 
     #  Initialize a queue for BFS traversal
     queue = [0]
@@ -29,6 +32,9 @@ def canUnlockAll(boxes):
             if key not in unlocked_boxes:
                 unlocked_boxes.add(key)
                 queue.append(key)
+        
+        #  Check if all boxes are unlocked and exit early
+        if len(unlocked_boxes) == n:
+            return True
 
-    #  Check if all boxes are unlocked
-    return len(unlocked_boxes) == len(boxes)
+    return False
