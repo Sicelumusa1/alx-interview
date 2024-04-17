@@ -4,7 +4,7 @@ const request = require('request');
 const process = require('process');
 
 function getCharacters (movieId) {
-  const url = `https://swapi-api.alx-tools.com/films/${movieId}`;
+  const url = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
   request(url, (error, response, body) => {
     if (error) {
       console.error(`Error fetching data: ${error.message}`);
