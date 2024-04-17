@@ -13,7 +13,7 @@ function getCharacters (movieId) {
     try {
       const filmData = JSON.parse(body);
       const characters = filmData.characters || [];
-      fetchCharacter(characters);
+      fetchAndPrintCharacters(characters);
     } catch (parseError) {
       console.error(`Error fetching data: ${parseError.message}`);
       process.exit(1);
@@ -21,7 +21,7 @@ function getCharacters (movieId) {
   });
 }
 
-function fetchCharacter (characterUrls) {
+function fetchAndPrintCharacters (characterUrls) {
   if (characterUrls.length === 0) {
     console.log('No characters found for this movie');
     return;
@@ -29,8 +29,11 @@ function fetchCharacter (characterUrls) {
 
   let count = 0;
 
-  characterUrls.forEach(characterUrl => {
-    request(characterUrl, (error, response, body) => {
+  function fetchCharacter (index) {
+    if (index >= characterUrls.length) {
+      process.exit(0);
+    }
+    request(characterUrls[index], (error, response, body) => {
       if (error) {
         console.error(`Error fetching character data: ${error.message}`);
         process.exit(1);
@@ -42,12 +45,14 @@ function fetchCharacter (characterUrls) {
         if (count === characterUrls.length) {
           process.exit(0);
         }
+        fetchCharacter(index + 1);
       } catch (parseError) {
         console.error(`Error fetching character data: ${parseError.message}`);
         process.exit(1);
       }
     });
-  });
+  }
+  fetchCharacter(0);
 }
 
 if (process.argv.length !== 3) {
