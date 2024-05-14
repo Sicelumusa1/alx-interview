@@ -1,6 +1,15 @@
 #!/usr/bin/python3
 
+"""Module to determine the winner of the prime game"""
+
 def is_prime(num):
+  """
+  Checks if a number is prime
+  Args:
+    num (int): the number to check
+    Returns:
+        bool: True if the number is prime, otherwise False
+  """
   if num < 2:
     return False
   for i in range(2, int(num**0.5) + 1):
@@ -9,7 +18,28 @@ def is_prime(num):
   return True 
 
 def isWinner(x, nums):
+  """
+  Determine the winner of the prime game
+
+  Args:
+    x (int): The number of rounds
+    nums (list): An array of n for each round
+
+  Returns:
+    str or None: The name of the player that won the most rounds
+                or None if the winner can not be determined
+  """
   def play_round(n):
+    """
+    Play one round of the prime game
+
+    Args:
+        n (int): The range of consecutive integers from 1 up to
+                and including n.
+
+    Returns:
+        str: The name of the player that won the round
+    """
     # Initializa the winner
     winner = "Maria"
     # Create a list to keep track of which numbers are still available
