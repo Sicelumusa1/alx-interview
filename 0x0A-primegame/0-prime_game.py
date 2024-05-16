@@ -63,6 +63,8 @@ def isWinner(x, nums):
     ben_wins = 0
 
     for n in nums:
+        if n > MAX_N:
+            n = MAX_N
         if can_win(n):
             maria_wins += 1
         else:
