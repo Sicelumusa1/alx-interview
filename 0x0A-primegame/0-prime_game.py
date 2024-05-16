@@ -17,6 +17,8 @@ def isWinner(x, nums):
     Returns:
         str or None: the name of he winner or None if it is a tie
     """
+    if not nums:
+        return None
 
     def primes_up_to_n(n):
         """
