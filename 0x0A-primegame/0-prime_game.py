@@ -20,6 +20,9 @@ def isWinner(x, nums):
     if not nums:
         return None
 
+    if x <= 0 or any(num < 1 for num in nums):
+        return None
+
     def primes_up_to_n(n):
         """
         Generate all prime numbers up to n
