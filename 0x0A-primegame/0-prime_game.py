@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 """A module to determine the winner of the prime game"""
+MAX_N = 10000
 
 
 def isWinner(x, nums):
@@ -25,8 +26,14 @@ def isWinner(x, nums):
             n (int): The upper bound for prime number generation
 
         Returns:
-            list: Alist containing all prime numbers up to n
+            list: A list containing all prime numbers up to n
         """
+        if n < 2:
+            return []
+
+        # Limit n to MAX_N to avoid perfomance issues
+        n = min(n, MAX_N)
+
         primes = [True] * (n + 1)
         primes[0], primes[1] = False, False
         p = 2
